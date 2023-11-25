@@ -8,35 +8,53 @@
 // [“1234”, “1567”, “-2”, “computer science”] → [“-2”]
 // [“Russia”, “Denmark”, “Kazan”] → []
 
-Console.Clear();
-Console.Write("Введите количество элементов массива:");
-int n = Convert.ToInt32(Console.ReadLine());
-string[] s = new string[n];
 
-void inputArray(string[] array)
+string[] CreateArray(string[] array)
 {
-    int a =1;
+    int count = 1;
     for (int i = 0; i < array.Length; i++)
     {
-        Console.WriteLine($"Введите {a}-й элемент массива");
-        s[i] = Convert.ToString(Console.ReadLine()!);
-        a++;
-    } 
+        Console.Write($"Введите {count}-й элемент массива: ");
+        array[i] = Convert.ToString(Console.ReadLine()!);
+        count++;
+    }
+    return array;
 }
 
-string[] sortArray(string[] str)
+void PriintArray(string[] arr)
 {
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < arr.Length; i++)
     {
-        if(str[i].Length <= 3) Console.Write($"{str[i]}, ");
+        if (i < arr.Length - 1) Console.Write($"\"{arr[i]}\", ");
+        else Console.Write($"\"{arr[i]}\"");
+    }
+}
+
+string[] SortArray(string[] str)
+{
+    for (int i = 0; i < str.Length; i++)
+    {
+        if (str[i].Length <= 3) Console.Write($"\"{str[i]}\" ");
+        
     }
     return str;
 }
 
-inputArray(s);
-Console.Write($"[{String.Join(", ", s)}]");
+Console.Clear();
+Console.Write("Введите количество элементов массива: ");
+int n = Convert.ToInt32(Console.ReadLine());
+if (n < 1)
+{
+    Console.WriteLine("Некорректный ввод.");
+    return;
+}
+string[] stringArray = new string[n];
 
-Console.Write(" -> [");
-sortArray(s);
+CreateArray(stringArray);
+Console.Write("[");
+PriintArray(stringArray);
 Console.Write("]");
 
+Console.Write(" -> [");
+SortArray(stringArray);
+Console.Write("]");
